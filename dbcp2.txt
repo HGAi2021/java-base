@@ -1,0 +1,19 @@
+
+https://www.cnblogs.com/shuaiguoguo/p/8883862.html
+一、字节和字符的关系
+一字节就是1byte
+英文数字一字节
+汉子两字节
+1字符可能编码成1字节或者2字节或者3字节或者4字节
+一个字节等于255字符
+二、InputStream（老大）
+FileInputStream 子类
+BufferInputStream（数据流缓存）
+不带缓冲的操作，每读一个字节就要写入一个字节，由于涉及磁盘的IO操作相比内存的操作要慢很多，所以不带缓冲的流效率很低。
+带缓冲的流，可以一次读很多字节，但不向磁盘中写入，只是先放到内存里。等凑够了缓冲区大小的时候一次性写入磁盘，这种方式可以减少磁盘操作次数，速度就会提高很多
+三、BufferedInputStream和FileInputStream和InputStream的关系
+BufferedInputStream是套在某个其他的InputStream外，起着缓存的功能，用来改善里面那个InputStream的性能（如果可能的话），它自己不能脱离里面那个单独存在。FileInputStream是读取一个文件来作InputStream。所以你可以把BufferedInputStream套在FileInputStream外，来改善FileInputStream的性能。
+ileInputStream与BufferedInputStream区别：
+FileInputStream是字节流，BufferedInputStream是字节缓冲流，使用BufferedInputStream读资源比FileInputStream读取资源的效率高（BufferedInputStream的read方法会读取尽可能多的字节），且FileInputStream对象的read方法会出现阻塞
+四、InputStreamreader（字节流转成字符流）
+ char []cha = new char[1024];
